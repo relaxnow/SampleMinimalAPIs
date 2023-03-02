@@ -26,6 +26,8 @@ steps:
     command: 'publish'
     publishWebProjects: true
     configuration: 'Debug'
+    arguments: '-r linux-x64'
+    zipAfterPublish: true
 
 - task: Veracode@3
   inputs:
