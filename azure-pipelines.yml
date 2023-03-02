@@ -29,11 +29,19 @@ steps:
     arguments: '-r linux-x64'
     zipAfterPublish: true
 
-- task: Veracode@3
+- task: CmdLine@2
   inputs:
-    ConnectionDetailsSelection: 'Service Connection'
-    AnalysisService: 'veracode'
-    veracodeAppProfile: '$(system.teamProject)'
-    version: '$(build.buildNumber)'
-    filepath: '$(build.artifactstagingdirectory)'
-    maximumWaitTime: '360'
+    script: |
+      echo "Agent.WorkFolder"
+      echo "$(Agent.WorkFolder)"
+      tree $(Agent.WorkFolder)\1 /f
+      
+      echo "Build.ArtifactStagingDirectory:" 
+      echo "$(Build.ArtifactStagingDirectory)"
+      tree $(Build.ArtifactStagingDirector)\1 /f
+      
+      echo "Build.BinariesDirectory:" 
+      echo "$(Build.BinariesDirectory)"
+      
+      echo "Build.SourcesDirectory:"
+      echo "$(Build.SourcesDirectory)"
